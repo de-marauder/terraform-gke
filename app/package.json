@@ -1,0 +1,15 @@
+{
+  "name": "date-checker",
+  "version": "1.0.0",
+  "description": "Web server to return the present date",
+  "main": "index.js",
+  "repository": "https://github.com/de-marauder/terraform-gke.git",
+  "author": "de-marauder",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
