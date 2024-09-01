@@ -7,15 +7,16 @@ This project demonstrates how to configure GKE with Terraform using best practic
    - [x] Develop a simple API (in the programming language of your choice) that returns the current time in a JSON format when accessed via a GET request.   
    - [x] Containerize the API using Docker. 
 2. Infrastructure Setup and Deployment (Terraform): 
-   - [ ] Use Terraform to create the entire infrastructure on Google Cloud Platform (GCP). 
-   - [ ] The infrastructure should include: 
-   - [ ] A Google Kubernetes Engine (GKE) cluster where the API will be deployed. 
-   - [ ] A NAT gateway to manage egress traffic from the cluster. 
-   - [ ] Appropriate IAM roles and policies. 
-   - [ ] VPC networking, subnets, and firewall rules for secure communication. 
-   - [ ] Kubernetes resources such as Namespaces, Deployments, Services, ConfigMaps, and Ingress. 
-   - [ ] Deploy the API to the GKE cluster exclusively using Terraform. This means you should define the Kubernetes resources (Deployments, Services, Ingress, etc.) within your Terraform code. 
-   - [ ] Implement Terraform Policy as Code (PaC) to enforce at least one security policy (e.g., ensuring that certain ports are closed or specific IAM roles are not granted). 
+   - [ ] Use Terraform to create the entire infrastructure on Google Cloud Platform (GCP).
+   
+   The infrastructure should include: 
+      - [ ] A Google Kubernetes Engine (GKE) cluster where the API will be deployed. 
+      - [ ] A NAT gateway to manage egress traffic from the cluster. 
+      - [ ] Appropriate IAM roles and policies. 
+      - [ ] VPC networking, subnets, and firewall rules for secure communication. 
+      - [ ] Kubernetes resources such as Namespaces, Deployments, Services, ConfigMaps, and Ingress. 
+      - [ ] Deploy the API to the GKE cluster exclusively using Terraform. This means you should define the Kubernetes resources (Deployments, Services, Ingress, etc.) within your Terraform code. 
+      - [ ] Implement Terraform Policy as Code (PaC) to enforce at least one security policy (e.g., ensuring that certain ports are closed or specific IAM roles are not granted). 
 3. CI/CD Pipeline: 
    - [ ] Implement a GitHub Actions pipeline that: 
    - [ ] Runs Terraform to provision all required infrastructure, including Kubernetes resources. 
