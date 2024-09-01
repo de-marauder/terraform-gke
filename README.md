@@ -4,8 +4,8 @@ This project demonstrates how to configure GKE with Terraform using best practic
 
 ## TODO:
 1. API Development: 
-   - [ ] Develop a simple API (in the programming language of your choice) that returns the current time in a JSON format when accessed via a GET request.   
-   - [ ] Containerize the API using Docker. 
+   - [x] Develop a simple API (in the programming language of your choice) that returns the current time in a JSON format when accessed via a GET request.   
+   - [x] Containerize the API using Docker. 
 2. Infrastructure Setup and Deployment (Terraform): 
    - [ ] Use Terraform to create the entire infrastructure on Google Cloud Platform (GCP). 
    - [ ] The infrastructure should include: 
