@@ -2,7 +2,7 @@
 
 This project demonstrates how to configure GKE with Terraform using best practices. It's contains CICD procedures for executing the terraform infrastructures using github actions.
 
-# TODO:
+## TODO:
 1. API Development: 
    - [ ] Develop a simple API (in the programming language of your choice) that returns the current time in a JSON format when accessed via a GET request.   
    - [ ] Containerize the API using Docker. 
