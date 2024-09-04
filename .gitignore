@@ -2,5 +2,5 @@ node_modules
 *key*
 *.tfvars
 *.terraform*
-*.sentinel
+.sentinel*
 *terraform-copy

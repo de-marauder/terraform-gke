@@ -24,6 +24,7 @@ jobs:
     - name: Setup Google Cloud CLI
       uses: google-github-actions/setup-gcloud@v0.2.0
       with:
+        export_default_credentials: true
         service_account_key: ${{ secrets.GCP_SA_KEY }}
         project_id: ${{ secrets.GCP_PROJECT_ID }}
 
@@ -86,16 +87,16 @@ jobs:
           -var="slack_auth_token=${{ secrets.SLACK_AUTH_TOKEN }}" \
           -out=tfplan
     
-    # - name: Setup Sentinel
-    #   run: |
-    #     wget https://releases.hashicorp.com/sentinel/0.18.4/sentinel_0.18.4_linux_amd64.zip
-    #     unzip sentinel_0.18.4_linux_amd64.zip
-    #     sudo mv sentinel /usr/local/bin/
+    - name: Setup Sentinel
+      run: |
+        wget https://releases.hashicorp.com/sentinel/0.18.4/sentinel_0.18.4_linux_amd64.zip
+        unzip sentinel_0.18.4_linux_amd64.zip
+        sudo mv sentinel /usr/local/bin/
     
-    # - name: Run Sentinel
-    #   run: |
-    #     terraform show -json tfplan > tf.json
-    #     sentinel apply -config=sentinel.hcl
+    - name: Run Sentinel
+      run: |
+        terraform show -json tfplan > tf.json
+        sentinel apply -config=sentinel.hcl
         
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'

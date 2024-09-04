@@ -1,0 +1,15 @@
+import "tfplan/v2" as tfplan
+
+# Disallowed ports
+disallowed_ports = [22, 3389]
+
+# Main rule
+main = rule {
+    all tfplan.resources.google_compute_firewall as _, firewall {
+        all firewall.change.after.allow as allow {
+            all allow.ports as port {
+                port not in disallowed_ports
+            }
+        }
+    }
+}
