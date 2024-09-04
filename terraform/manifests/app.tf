@@ -20,7 +20,7 @@ resource "kubernetes_secret" "gcr_pull_secret" {
     ".dockerconfigjson" = jsonencode({
       auths = {
         "gcr.io" = {
-          auth = base64encode("_json_key:${file("terraform-sa-key.json")}")
+          auth = base64encode("_json_key:${file(var.gcp_svc_key)}")
         }
       }
     })
