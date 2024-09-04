@@ -5,9 +5,9 @@ on:
     branches: [ main ]
 
 env:
-  CLUSTER_NAME: ${{ secrets.GCP_CLUSTER_NAME }}
+  CLUSTER_NAME: shortlet-app-cluster
   PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
-  GKE_CLUSTER: shortlet-cluster
+  GKE_CLUSTER: shortlet-app-cluster
   GKE_ZONE: us-central1
 
 jobs:
