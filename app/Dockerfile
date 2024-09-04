@@ -2,7 +2,7 @@ FROM node:14-slim
 
 WORKDIR /app
 
-COPY package*.json yarn.lock ./
+COPY package*.json ./
 RUN npm install --only=production
 
 COPY . .
