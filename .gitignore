@@ -1,1 +1,6 @@
 node_modules
+*key*
+*.tfvars
+*.terraform*
+*.sentinel
+*terraform-copy
