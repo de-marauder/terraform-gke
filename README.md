@@ -30,3 +30,15 @@ This project demonstrates how to configure GKE with Terraform using best practic
 5. Extras:
    - [x] Implement monitoring and alerting for the deployed API using Google Cloud's monitoring tools. 
    - [x] Use advanced Terraform features to organize your code. 
+
+
+## [How to run](./terraform/README.md)
+
+Requirements
+- Terraform
+- Gcloud
+  
+Please vist [here](./terraform/README.md) for more information
+
+## Result
+<img src="assets/site.png">
