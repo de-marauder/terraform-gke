@@ -59,3 +59,7 @@ variable "time_api_memory_limit" {
   type        = string
   default     = "256Mi"
 }
+
+variable "gcp_svc_key" {
+  description = "GCP svc key for terraform"
+}

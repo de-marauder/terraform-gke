@@ -5,6 +5,9 @@ variable "project_name" {
 variable "project_id" {
   description = "GCP Project ID"
 }
+variable "gcp_svc_key" {
+  description = "GCP Service key for terraform"
+}
 
 variable "region" {
 }

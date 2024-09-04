@@ -11,6 +11,24 @@ resource "kubernetes_namespace" "time_api" {
   }
 }
 
+resource "kubernetes_secret" "gcr_pull_secret" {
+  metadata {
+    name = "gcr-pull-secret"
+  }
+
+  data = {
+    ".dockerconfigjson" = jsonencode({
+      auths = {
+        "gcr.io" = {
+          auth = base64encode("_json_key:${file("terraform-sa-key.json")}")
+        }
+      }
+    })
+  }
+
+  type = "kubernetes.io/dockerconfigjson"
+}
+
 resource "kubernetes_deployment" "time_api" {
   metadata {
     name      = var.time_api_name
@@ -34,6 +52,9 @@ resource "kubernetes_deployment" "time_api" {
       }
 
       spec {
+        image_pull_secrets {
+          name = "gcr-pull-secret"
+        }
         container {
           image = "gcr.io/${var.project_id}/time-api:${var.time_api_image_tag}"
           name  = var.time_api_name

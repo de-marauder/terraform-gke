@@ -12,6 +12,7 @@ resource "google_service_account" "kubernetes" {
 # Mapping of required roles to service account
 resource "google_project_iam_member" "kubernetes_roles" {
   for_each = toset([
+    "roles/storage.admin",
     "roles/logging.logWriter",
     "roles/monitoring.metricWriter",
     "roles/monitoring.viewer",

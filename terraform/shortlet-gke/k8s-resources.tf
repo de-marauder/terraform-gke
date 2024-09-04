@@ -2,6 +2,8 @@
 module "manifests" {
   source = "../manifests"
 
+  gcp_svc_key = var.gcp_svc_key
+
   project_id               = var.project_id
   google_container_cluster = google_container_cluster.shortlet
   cluster_name             = google_container_cluster.shortlet.name

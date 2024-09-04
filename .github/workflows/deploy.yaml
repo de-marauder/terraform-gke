@@ -83,6 +83,7 @@ jobs:
           -var="email=${{ secrets.EMAIL }}" \
           -var="slack_auth_token=${{ secrets.SLACK_AUTH_TOKEN }}" \
           -var="cluster_name=${{ env.CLUSTER_NAME }}" \
+          -var="gcp_svc_key=$GOOGLE_APPLICATION_CREDENTIALS_DIR" \
           -out=tfplan -lock=false
     
     # - name: Setup Sentinel
@@ -99,7 +100,7 @@ jobs:
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       working-directory: ./terraform
-      run: terraform apply -auto-approve tfplan  -lock=false
+      run: terraform apply -auto-approve -lock=false tfplan
     
     - name: Get GKE Credentials
       run: |

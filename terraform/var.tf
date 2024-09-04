@@ -51,3 +51,9 @@ variable "slack_auth_token" {
   type        = string
   sensitive   = true
 }
+
+variable "gcp_svc_key" {
+  description = "Service key for terraform"
+  type        = string
+  sensitive   = true
+}
