@@ -35,8 +35,7 @@ resource "kubernetes_deployment" "time_api" {
 
       spec {
         container {
-          # image = "gcr.io/${var.project_id}/time-api:${var.time_api_image_tag}"
-          image = "demarauder/time-api:latest"
+          image = "gcr.io/${var.project_id}/time-api:${var.time_api_image_tag}"
           name  = var.time_api_name
 
           port {
