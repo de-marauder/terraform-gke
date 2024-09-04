@@ -32,8 +32,14 @@ jobs:
         gcloud --quiet auth configure-docker
 
     - name: Build Docker Image
+      working-directory: ./app
       run: |
         docker build -t gcr.io/$PROJECT_ID/time-api:$GITHUB_SHA .
+
+        - name: Push Docker Image
+          working-directory: ./app
+          run: |
+            docker push gcr.io/$PROJECT_ID/time-api:$GITHUB_SHA
 
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
@@ -44,10 +50,6 @@ jobs:
         ignore-unfixed: true
         vuln-type: 'os,library'
         severity: 'CRITICAL,HIGH'
-
-    - name: Push Docker Image
-      run: |
-        docker push gcr.io/$PROJECT_ID/time-api:$GITHUB_SHA
 
     - name: Initialize Terraform
       run: |
