@@ -87,18 +87,18 @@ jobs:
           -var="email=${{ secrets.EMAIL }}" \
           -var="slack_auth_token=${{ secrets.SLACK_AUTH_TOKEN }}" \
           -var="cluster_name=${{ env.CLUSTER_NAME }}" \
-          -out=tfplan
+          -out=tfplan -lock=false
     
-    - name: Setup Sentinel
-      run: |
-        wget https://releases.hashicorp.com/sentinel/0.18.4/sentinel_0.18.4_linux_amd64.zip
-        unzip sentinel_0.18.4_linux_amd64.zip
-        sudo mv sentinel /usr/local/bin/
+    # - name: Setup Sentinel
+    #   run: |
+    #     wget https://releases.hashicorp.com/sentinel/0.18.4/sentinel_0.18.4_linux_amd64.zip
+    #     unzip sentinel_0.18.4_linux_amd64.zip
+    #     sudo mv sentinel /usr/local/bin/
     
-    - name: Run Sentinel
-      run: |
-        terraform show -json tfplan > tf.json
-        sentinel apply -config=sentinel.hcl
+    # - name: Run Sentinel
+    #   run: |
+    #     terraform show -json tfplan > tf.json
+    #     sentinel apply -config=sentinel.hcl
         
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
