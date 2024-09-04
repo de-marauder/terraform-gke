@@ -5,6 +5,7 @@ on:
     branches: [ main ]
 
 env:
+  CLUSTER_NAME: ${{ secrets.GCP_CLUSTER_NAME }}
   PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
   GKE_CLUSTER: shortlet-cluster
   GKE_ZONE: us-central1
@@ -85,6 +86,7 @@ jobs:
           -var="dns_zone_name=${{ secrets.DNS_ZONE_NAME }}" \
           -var="email=${{ secrets.EMAIL }}" \
           -var="slack_auth_token=${{ secrets.SLACK_AUTH_TOKEN }}" \
+          -var="cluster_name=${{ env.CLUSTER_NAME }}" \
           -out=tfplan
     
     - name: Setup Sentinel
