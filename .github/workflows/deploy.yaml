@@ -99,7 +99,7 @@ jobs:
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       working-directory: ./terraform
-      run: terraform apply -auto-approve tfplan
+      run: terraform apply -auto-approve tfplan  -lock=false
     
     - name: Get GKE Credentials
       run: |
