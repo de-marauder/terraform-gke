@@ -83,7 +83,7 @@ jobs:
           -var="dns_zone_name=${{ secrets.DNS_ZONE_NAME }}" \
           -var="email=${{ secrets.EMAIL }}" \
           -var="slack_auth_token=${{ secrets.SLACK_AUTH_TOKEN }}" \
-          -var="=${{ env.GKE_CLUSTER }}" \
+          -var="cluster_name=${{ env.GKE_CLUSTER }}" \
           -var="gcp_svc_key=$GOOGLE_APPLICATION_CREDENTIALS" \
           -out=tfplan -lock=false
     
