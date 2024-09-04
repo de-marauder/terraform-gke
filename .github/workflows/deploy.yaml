@@ -74,6 +74,8 @@ jobs:
     - name: Terraform Plan
       working-directory: ./terraform
       run: |
+        echo $GOOGLE_APPLICATION_CREDENTIALS
+        echo $GOOGLE_APPLICATION_CREDENTIALS_DIR
         terraform plan \
           -var="project_id=$PROJECT_ID" \
           -var="time_api_image_tag=$GITHUB_SHA" \
@@ -83,7 +85,7 @@ jobs:
           -var="email=${{ secrets.EMAIL }}" \
           -var="slack_auth_token=${{ secrets.SLACK_AUTH_TOKEN }}" \
           -var="cluster_name=${{ env.CLUSTER_NAME }}" \
-          -var="gcp_svc_key=$GOOGLE_APPLICATION_CREDENTIALS_DIR" \
+          -var="gcp_svc_key=$GOOGLE_APPLICATION_CREDENTIALS" \
           -out=tfplan -lock=false
     
     # - name: Setup Sentinel

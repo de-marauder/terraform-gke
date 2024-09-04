@@ -25,7 +25,7 @@ variable "region" {
 }
 variable "time_api_image_tag" {
   type        = string
-  description = "The FQDN for ingress traffic"
+  description = "API image tag to be used"
 }
 
 # DNS parameters
