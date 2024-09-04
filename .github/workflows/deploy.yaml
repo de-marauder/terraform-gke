@@ -53,12 +53,20 @@ jobs:
 
     - name: Initialize Terraform
       run: |
-        echo ${{ secrets.GCP_SA_KEY }} > gcp-sa-key.json
+        echo '${{ secrets.GCP_SA_KEY }}' > gcp-sa-key.json
         export GOOGLE_APPLICATION_CREDENTIALS_DIR=$(pwd)/gcp-sa-key.json
       working-directory: ./terraform
 
     - name: Initialize Terraform
       run: terraform init
+      working-directory: ./terraform
+
+    - name: Format Terraform Configuration
+      run: terraform fmt
+      working-directory: ./terraform
+
+    - name: Validate Terraform
+      run: terraform validate
       working-directory: ./terraform
 
     - name: Terraform Plan
