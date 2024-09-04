@@ -1,0 +1,25 @@
+import "tfplan/v2" as tfplan
+
+# List of allowed ports
+allowed_ports = [80, 443, 22]
+
+# Filter to get all google_compute_firewall resources with "create" action
+firewall_rules = filter tfplan.resource_changes as _, rc {
+  rc.type is "google_compute_firewall" and
+  rc.change.actions is ["create"]
+}
+
+# Check if any firewall rules allow public access to disallowed ports
+disallowed_public_access = filter firewall_rules as _, firewall {
+  all firewall.change.after.allow as allow {
+    any allow.ports as port {
+      int(port) not in allowed_ports
+    }
+  } and
+  firewall.change.after.source_ranges is ["0.0.0.0/0"]
+}
+
+# Main rule
+main = rule {
+  length(disallowed_public_access) is 0
+}

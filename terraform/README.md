@@ -34,18 +34,31 @@ Requirements
 
 1. Initialize terraform to download all the dependencies required
     ```
-    cd <terrafom-directory>
+    cd terrafom
     terraform init
     ```
 2. Format and validate the configuration
     ```
-    cd <terrafom-directory>
+    cd terrafom
     terraform fmt && terraform validate
     ```
 3. Run a plan to view the proposed changes to infrastructure
     ```
-    cd <terrafom-directory>
-    terraform plan
+    cd terrafom
+    terraform plan -out=tfplan
+    ```
+3. Run sentinel PaC against plan output
+    ```
+    # Install sentinel
+    wget https://releases.hashicorp.com/sentinel/0.27.0/sentinel_0.27.0_linux_amd64.zip
+    unzip sentinel_0.27.0_linux_amd64.zip
+    sudo mv sentinel /usr/local/bin/
+    rm sentinel_0.27.0_linux_amd64.zip
+
+    # Apply sentinel policies
+    terraform show -json tfplan > tf.json
+    cd terrafom/sentinel
+    sentinel apply -config=sentinel.hcl
     ```
 4. Apply the changes
    - setup your terraform.tfvars file
@@ -56,11 +69,21 @@ Requirements
     domain           = "xxxx.xxx"
     email            = "xxxxxx"
     dns_zone_name    = "xxxxxx"
+    gcp_svc_key      = "terraform-sa-key.json"
+    time_api_image_tag = "latest"
     ```
 
     apply configurations
     ```
-    cd <terrafom-directory>
+    cd terrafom
     terraform apply -auto-approve
     ```
-4. Visit the domain name provided
+5. Visit the domain name provided
+   
+6. Download kubectl configuration and confirm deployments
+   ```bash
+    gcloud container clusters get-credentials $GKE_CLUSTER --zone $GKE_ZONE --project $PROJECT_ID
+    gcloud components install gke-gcloud-auth-plugin
+
+    kubectl get nodes
+   ```

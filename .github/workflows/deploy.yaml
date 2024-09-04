@@ -73,8 +73,6 @@ jobs:
     - name: Terraform Plan
       working-directory: ./terraform
       run: |
-        echo $GOOGLE_APPLICATION_CREDENTIALS
-        echo $GOOGLE_APPLICATION_CREDENTIALS_DIR
         terraform plan \
           -var="project_id=$PROJECT_ID" \
           -var="time_api_image_tag=$GITHUB_SHA" \
@@ -87,16 +85,19 @@ jobs:
           -var="gcp_svc_key=$GOOGLE_APPLICATION_CREDENTIALS" \
           -out=tfplan -lock=false
     
-    # - name: Setup Sentinel
-    #   run: |
-    #     wget https://releases.hashicorp.com/sentinel/0.18.4/sentinel_0.18.4_linux_amd64.zip
-    #     unzip sentinel_0.18.4_linux_amd64.zip
-    #     sudo mv sentinel /usr/local/bin/
+    - name: Setup Sentinel
+      working-directory: ./terraform/sentinel
+      run: |
+        wget https://releases.hashicorp.com/sentinel/0.27.0/sentinel_0.27.0_linux_amd64.zip
+        unzip sentinel_0.27.0_linux_amd64.zip
+        sudo mv sentinel /usr/local/bin/
+        rm sentinel_0.27.0_linux_amd64.zip
     
-    # - name: Run Sentinel
-    #   run: |
-    #     terraform show -json tfplan > tf.json
-    #     sentinel apply -config=sentinel.hcl
+    - name: Run Sentinel
+      working-directory: ./terraform/sentinel
+      run: |
+        terraform show -json tfplan > tf.json
+        sentinel apply -config=sentinel.hcl
         
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'

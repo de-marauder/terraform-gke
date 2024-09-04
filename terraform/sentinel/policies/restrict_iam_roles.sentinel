@@ -1,0 +1,22 @@
+import "tfplan/v2" as tfplan
+
+# List of disallowed IAM roles
+disallowed_roles = [
+    "roles/owner",
+    "roles/editor",
+]
+
+# Filter to get all google_project_iam_member resources
+iam_members = filter tfplan.resource_changes as _, rc {
+  rc.type is "google_project_iam_member"
+}
+
+# Check if any IAM roles are disallowed
+disallowed_roles_assigned = filter iam_members as _, iam {
+  iam.change.after.role in disallowed_roles
+}
+
+# Main rule
+main = rule {
+  length(disallowed_roles_assigned) is 0
+}
