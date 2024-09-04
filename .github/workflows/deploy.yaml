@@ -77,10 +77,6 @@ jobs:
         terraform plan \
           -var="project_id=$PROJECT_ID" \
           -var="time_api_image_tag=$GITHUB_SHA" \
-          -var="time_api_cpu_request=100m" \
-          -var="time_api_cpu_limit=500m" \
-          -var="time_api_memory_request=128Mi" \
-          -var="time_api_memory_limit=256Mi" \
           -var="authorized_network=${{ secrets.AUTHORIZED_NETWORK }}" \
           -var="domain=${{ secrets.DOMAIN }}" \
           -var="dns_zone_name=${{ secrets.DNS_ZONE_NAME }}" \
