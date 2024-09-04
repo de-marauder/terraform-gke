@@ -23,6 +23,10 @@ variable "region" {
   type    = string
   default = "us-central1"
 }
+variable "time_api_image_tag" {
+  type        = string
+  description = "The FQDN for ingress traffic"
+}
 
 # DNS parameters
 variable "domain" {
