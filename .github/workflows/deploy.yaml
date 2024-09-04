@@ -7,7 +7,7 @@ on:
 env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
   GKE_CLUSTER: shortlet-app-cluster
-  GKE_ZONE: us-central1
+  GKE_ZONE: us-central1-a
 
 jobs:
   setup-build-publish-deploy:
