@@ -115,7 +115,7 @@ jobs:
 
     - name: Test API
       run: |
-        response=$(curl -s -o /dev/null -w "%{http_code}" https://$INGRESS_IP)
+        response=$(curl -s -o /dev/null -w "%{http_code}" https://time-api.${{ secrets.DOMAIN }})
         if [ $response = "200" ]; then
           echo "API is accessible and returning a 200 status code"
         else
