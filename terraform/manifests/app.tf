@@ -14,6 +14,7 @@ resource "kubernetes_namespace" "time_api" {
 resource "kubernetes_secret" "gcr_pull_secret" {
   metadata {
     name = "gcr-pull-secret"
+    namespace = kubernetes_namespace.time_api.metadata[0].name
   }
 
   data = {
