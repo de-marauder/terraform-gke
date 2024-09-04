@@ -40,5 +40,11 @@ Requirements
   
 Please vist [here](./terraform/README.md) for more information
 
-## Result
+## Results
 <img src="assets/site.png">
+<img src="assets/gke-1.png">
+<img src="assets/gke-2.png">
+<img src="assets/monitor-1.png">
+<img src="assets/monitor-2.png">
+<img src="assets/monitor-3.png">
+<img src="assets/monitor-4.png">

@@ -96,7 +96,7 @@ jobs:
     - name: Run Sentinel
       working-directory: ./terraform/sentinel
       run: |
-        terraform show -json tfplan > tf.json
+        terraform show -json ../tfplan > ../tf.json
         sentinel apply -config=sentinel.hcl
         
     - name: Terraform Apply
